@@ -8,27 +8,23 @@ function choixRole() {
     $monDiv = document.getElementById('Formulaire_Etudiant');
     $monSelect = document.getElementById('role');//récupération de la valeur du roles
     //formulaire qui sera modifier par la fonction
-    $monDiv.style.visibility = 'hidden';
-    $monDiv.style.height = "0";
+    $monDiv.style.display = 'none';
 //    $monDiv1.style.visibility = 'hidden';
 //    $monDiv1.style.height = "0";
 
     switch ($monSelect.value) { // 4 : Etudiant ; 5 : Maître de stage
         case "4" ://Etudiant
-            $monDiv.style.visibility = 'visible';
-            $monDiv.style.height = "100%";
+            $monDiv.style.display = 'block';
 //            $monDiv1.style.visibility = 'hidden';
 //            $monDiv1.style.height = "0";
             break;
         case "5" : //MaitreDeStage
 //            $monDiv1.style.visibility = 'visible';
 //            $monDiv1.style.height = "100%";
-            $monDiv.style.visibility = 'hidden';
-            $monDiv.style.height = "0";
+            $monDiv.style.display = 'none';
             break;
         default://laisse les option caché pour tout autres utilisateur
-            $monDiv.style.visibility = 'hidden';
-            $monDiv.style.height = "0";
+            $monDiv.style.display = 'none';
 //            $monDiv1.style.visibility = 'hidden';
 //            $monDiv1.style.height = "0";
     }
@@ -100,7 +96,6 @@ function valider()
         document.getElementById('mail').focus();
         return false;
     }
-
     if ((document.getElementById('mail').value.indexOf("@", 0) < 0) || (document.getElementById('mail').value.indexOf(".", 0) < 0))
     {
         alert("Adresse email incorrecte. \nVeuillez corriger;");
@@ -108,6 +103,52 @@ function valider()
         document.getElementById('mail').focus();
         return false;
     }
+    
+    
+    if (ok == 1) {
+        etapeIdentifiant();
+    }
+
+}
+
+//Affichage etape suivante Identifiant
+function etapeIdentifiant(){
+    //rendre invisible
+    document.getElementById('Formulaire_Type_compte').style.display='none';
+    document.getElementById('Formulaire_Information_generales').style.display='none';
+    document.getElementById('Formulaire_Etudiant').style.display='none';
+    document.getElementById('Formulaire_MaitreStage').style.display='none';
+    
+    //rendre visible
+    document.getElementById('Formulaire_Identifiants').style.display='block';
+    
+    //activer-désactiver les boutons
+    document.getElementById('button-precedent').disabled = false;
+    document.getElementById('button-suivant').disabled = true;
+    document.getElementById('button-creer').disabled = false;
+}
+
+function etapePrecedent(){
+    //rendre invisible
+    document.getElementById('Formulaire_Identifiants').style.display='none';
+    
+    //rendre visible
+    document.getElementById('Formulaire_Type_compte').style.display='block';
+    document.getElementById('Formulaire_Information_generales').style.display='block';
+    
+    //activer-désactiver les boutons
+    document.getElementById('button-precedent').disabled = true;
+    document.getElementById('button-suivant').disabled = false;
+    document.getElementById('button-creer').disabled = true;
+    
+    choixRole();
+    
+}
+
+//Vlidation Identifiant
+function valideI(){
+    var ok = 1;
+    
     if (document.getElementById('login').value == "")
     {
         alert("Veuillez indiquer votre login.");
@@ -152,11 +193,9 @@ function valider()
     }
 
     if (ok == 1) {
-
         document.submit();
-
     }
-
+    
 }
 //VAlidation création entreprise
 function validerE()

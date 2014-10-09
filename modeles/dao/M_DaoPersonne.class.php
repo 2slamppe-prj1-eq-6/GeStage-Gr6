@@ -166,6 +166,27 @@ class M_DaoPersonne extends M_DaoGenerique {
         }
         return $retour;
     }
+    
+    /**
+     * chercherLogin
+     * @param string $login
+     * @return boolean 
+     */
+    function chercherLogin($login) {
+        $retour = false;
+        try {
+            $sql = "SELECT LOGINUTILISATEUR FROM $this->nomTable WHERE LOGINUTILISATEUR=:login";
+            $stmt = $this->pdo->prepare($sql);
+            if ($stmt->execute(array(':login' => $login))) {
+                if($stmt->fetch(PDO::FETCH_ASSOC)){
+                    $retour = true;
+                }
+            }
+        } catch (PDOException $e) {
+            echo get_class($this) . ' - ' . __METHOD__ . ' : ' . $e->getMessage();
+        }
+        return $retour;
+    }
 
     /**
      * suppression
@@ -228,7 +249,7 @@ class M_DaoPersonne extends M_DaoGenerique {
         }
         return $retour;
     }
-
+    
 }
 
 

@@ -14,7 +14,7 @@
         echo'<label for="option">option :</label>';
         echo'<select type="select" name="option" id="option">';
  
-        $requet="SELECT * FROM SPECIALITE ;"; // requette pour récupérer les donnée option
+        $requet="SELECT * FROM FILIERE ;"; // requette pour récupérer les donnée option
         $requetExe=mysql_query($requet);
     //$lesClasses = new M_ListeClasses();
     //$classe=$lesClasses->get($chaine);
