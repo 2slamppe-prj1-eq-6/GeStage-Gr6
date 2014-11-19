@@ -121,7 +121,7 @@
         <fieldset>
             <input type="button" id="button-precedent" value="Précédent" onclick="return etapePrecedent()" disabled>
             <input type="button" id="button-suivant" value="Suivant" onclick="return valider()">
-            <input type="submit" id="button-creer" value="Creer" onclick="return valideI()" disabled></input>
+            <input type="submit" id="button-creer" value="Creer" onclick="return valideI()" disabled>
         <!-- OnClick éxécutera le JS qui testera tout les champ du formulaire. -->
         </fieldset>
     </div>

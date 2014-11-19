@@ -352,4 +352,9 @@ function imprimer() {
     document.body.className = document.body.classNAme.replace(/\bprint\b/, "");
 
 }
+
+function rechercheClasseAfficherEtudiant(){
+    document.getElementByName("optionFiliere").style.display="none";
+    document.getElementByName("optionFiliere").value.match("/"+document.getElementById('filiere').value+"-.*/").style.display="block";
+}
     

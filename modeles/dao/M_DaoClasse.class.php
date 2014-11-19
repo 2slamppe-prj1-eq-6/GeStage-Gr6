@@ -1,11 +1,11 @@
 <?php
 
-class M_DaoFiliere extends M_DaoGenerique {
+class M_DaoClasse extends M_DaoGenerique {
 
 
     function __construct() {
-        $this->nomTable = "FILIERE";
-        $this->nomClefPrimaire = "NUMFILIERE";
+        $this->nomTable = "CLASSE";
+        $this->nomClefPrimaire = "NUMCLASSE";
     }
 
     /**
@@ -15,7 +15,7 @@ class M_DaoFiliere extends M_DaoGenerique {
      * @return objet :  instance de la classe métier, initialisée d'après les valeurs de l'enregistrement 
      */
     public function enregistrementVersObjet($enreg) {
-        $retour = new M_Filiere($enreg['NUMFILIERE'], $enreg['LIBELLEFILIERE']);
+        $retour = new M_Classe($enreg['NUMCLASSE'],$enreg['IDSPECIALITE'],$enreg['NUMFILIERE'],$enreg['NOMCLASSE']);
         return $retour;
     }
 
@@ -28,8 +28,10 @@ class M_DaoFiliere extends M_DaoGenerique {
         // construire un tableau des paramètres d'insertion ou de modification
         // l'ordre des valeurs est important : il correspond à celui des paramètres de la requête SQL
         $retour = array(
-            ':id' => $objetMetier->getId(),
-            ':libelle' => $objetMetier->getLibelle(),
+            ':numclasse' => $objetMetier->getNumclasse(),
+            ':idspecialite' => $objetMetier->getIdspecialite(),
+            ':numfiliere' => $objetMetier->getNumfiliere(),
+            ':nomclasse' => $objetMetier->getNomclasse(),
         );
         return $retour;
     }
